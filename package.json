@@ -1,16 +1,23 @@
 {
   "name": "unicode-style-transform",
   "version": "1.0.0",
+  "description": "add and remove style to strings with unicode",
+  "author": "Julien Donque",
+  "license": "ISC",
+  "repository": {
+    "url": "https://github.com/makidelille/unicode-style-transform"
+  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "/lib"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
+    "jest": "^29.7.0",
     "typescript": "^5.7.3"
   }
 }

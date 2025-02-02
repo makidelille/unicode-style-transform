@@ -66,6 +66,6 @@ export const lookup: Record<string, Partial<Record<Style, string>>> = {
 
 }
 
-export const reverseLookup: Record<string, string> = Object.entries(lookup)
-    .map(([base, v]) => Object.values(v).reduce((acc, c) => ({ ...acc, [c]: base }), {}))
+export const reverseLookup: Record<number, string> = Object.entries(lookup)
+    .map(([base, v]) => Object.values(v).reduce((acc, c) => ({ ...acc, [c.codePointAt(0)!]: base }), {}))
     .reduce((a, c) => ({ ...a, ...c }), {})
