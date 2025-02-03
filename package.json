@@ -1,6 +1,6 @@
 {
   "name": "unicode-style-transform",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "add and remove style to strings with unicode",
   "author": "Julien Donque",
   "license": "ISC",

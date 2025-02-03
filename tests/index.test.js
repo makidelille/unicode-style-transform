@@ -19,6 +19,11 @@ describe('UnicodeStyleTransform', () => {
         expect(stylize(testSentence, Style.DoubleStruck)).toBe('𝕋ℍ𝔼 ℚ𝕌𝕀ℂ𝕂 𝔹ℝ𝕆𝕎ℕ 𝔽𝕆𝕏 𝕁𝕌𝕄ℙ𝕊 𝕆𝕍𝔼ℝ 𝕋ℍ𝔼 𝕃𝔸ℤ𝕐 𝔻𝕆𝔾 𝕋𝕙𝕖 𝕢𝕦𝕚𝕔𝕜 𝕓𝕣𝕠𝕨𝕟 𝕗𝕠𝕩 𝕛𝕦𝕞𝕡𝕤 𝕠𝕧𝕖𝕣 𝕥𝕙𝕖 𝕝𝕒𝕫𝕪 𝕕𝕠𝕘 𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡𝟘')
     })
 
+    it('diactricts', () => {
+        expect(stylize('àéùûîçñ', Style.Bold)).toBe('𝐚̀𝐞́𝐮̀𝐮̂𝐢̂𝐜̧𝐧̃'.normalize('NFD'));
+        expect(unstylize('𝐚̀𝐞́𝐮̀𝐮̂𝐢̂𝐜̧𝐧̃')).toBe('àéùûîçñ'.normalize('NFD'));
+    })
+
     it('Composition', () => {
         expect(stylize(stylize(testSentence, Style.Bold), Style.Italic)).toBe(stylize(testSentence, Style.Bold | Style.Italic));
         expect(unstylize(stylize(testSentence, Style.Bold | Style.Italic), Style.Bold)).toBe(stylize(testSentence, Style.Italic));

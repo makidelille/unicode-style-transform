@@ -4,7 +4,7 @@ import { Style } from "./type";
 
 export function info(str: string): { style: Style, base?: string } {
     if (!str[0]) return { style: Style.None };
-    const base = reverseLookup[str.codePointAt(0)!]
+    const base = reverseLookup[str.normalize("NFD").codePointAt(0)!]
     if (!base || !lookup[base]) return { style: Style.None };
     return {
         base,
@@ -16,7 +16,7 @@ export function info(str: string): { style: Style, base?: string } {
 
 export function stylize(str: string, styleToAdd: Style): string {
     let newString = '';
-    for (const char of str) {
+    for (const char of str.normalize("NFD")) {
         const { style, base = char } = info(char);
         const newStyle: Style = style | styleToAdd;
         newString += lookup[base]?.[newStyle] ?? base
@@ -26,7 +26,7 @@ export function stylize(str: string, styleToAdd: Style): string {
 
 export function unstylize(str: string, styleToRemove: Style = Style.All): string {
     let newString = '';
-    for (const char of str) {
+    for (const char of str.normalize("NFD")) {
         const { style, base = char } = info(char);
         const newStyle: Style = style & (styleToRemove ^ Style.All);
         newString += lookup[base]?.[newStyle] ?? base;
